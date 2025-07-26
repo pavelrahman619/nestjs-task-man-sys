@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "imgildev.vscode-nestjs-pack",
+        "imgildev.vscode-nestjs-generator"
+    ]
+}
