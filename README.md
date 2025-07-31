@@ -29,3 +29,7 @@ DATABASE_URL="postgresql://postgres:123@localhost:5434/nest"
 yarn start:dev
 # or
 npm run start:dev
+
+
+5. Start Prisma
+yarn prisma studio
