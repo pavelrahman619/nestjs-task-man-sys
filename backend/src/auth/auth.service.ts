@@ -1,11 +1,15 @@
 import { SignUpDto, SignInDto } from './dto/auth.dto';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtService } from '@nestjs/jwt';
 
 import * as argon from 'argon2';
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private jwt: JwtService,
+  ) {}
 
   async signIn(dto: SignInDto) {
     try {
@@ -36,9 +40,16 @@ export class AuthService {
       // Remove password from response
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...userWithoutPassword } = user;
+
+      // Generate JWT token
+      const token = this.jwt.sign({ sub: user.id, email: user.email });
+
       return {
         success: true,
-        data: userWithoutPassword,
+        data: {
+          user: userWithoutPassword,
+          access_token: token,
+        },
         message: 'Sign in successful',
       };
     } catch (error) {
@@ -64,7 +75,17 @@ export class AuthService {
       // Remove password from response
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...userWithoutPassword } = user;
-      return { success: true, data: userWithoutPassword };
+
+      // Generate JWT token
+      const token = this.jwt.sign({ sub: user.id, email: user.email });
+
+      return {
+        success: true,
+        data: {
+          user: userWithoutPassword,
+          access_token: token,
+        },
+      };
     } catch (error) {
       console.error('AuthService signUp error:', error);
       return {

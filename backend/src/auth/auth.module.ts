@@ -1,13 +1,20 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { JwtStrategy } from './strategy/jwt.strategy';
 
 @Module({
+  imports: [
+    PassportModule,
+    JwtModule.register({
+      secret: 'your-secret-key',
+      signOptions: { expiresIn: '5m' },
+    }),
+  ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
   exports: [AuthService],
 })
-export class AuthModule {
-  // This class is currently empty, but it can be used to define the authentication module
-  // in a NestJS application. You can add providers, controllers, and other configurations here.
-}
+export class AuthModule {}
