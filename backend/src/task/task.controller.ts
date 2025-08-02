@@ -11,6 +11,7 @@ import {
 import { TaskService } from './task.service';
 import { CreateTaskDto, UpdateTaskDto } from './dto';
 import { JwtGuard, GetUser } from '../auth';
+import { User } from 'generated/prisma';
 
 @Controller('tasks')
 @UseGuards(JwtGuard)
@@ -18,23 +19,23 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Post()
-  async createTask(@GetUser() user: any, @Body() dto: CreateTaskDto) {
+  async createTask(@GetUser() user: User, @Body() dto: CreateTaskDto) {
     return this.taskService.createTask(user.id, dto);
   }
 
   @Get()
-  async getUserTasks(@GetUser() user: any) {
+  async getUserTasks(@GetUser() user: User) {
     return this.taskService.getUserTasks(user.id);
   }
 
   @Get(':id')
-  async getTaskById(@GetUser() user: any, @Param('id') taskId: string) {
+  async getTaskById(@GetUser() user: User, @Param('id') taskId: string) {
     return this.taskService.getTaskById(user.id, taskId);
   }
 
   @Put(':id')
   async updateTask(
-    @GetUser() user: any,
+    @GetUser() user: User,
     @Param('id') taskId: string,
     @Body() dto: UpdateTaskDto,
   ) {
@@ -42,7 +43,7 @@ export class TaskController {
   }
 
   @Delete(':id')
-  async deleteTask(@GetUser() user: any, @Param('id') taskId: string) {
+  async deleteTask(@GetUser() user: User, @Param('id') taskId: string) {
     return this.taskService.deleteTask(user.id, taskId);
   }
 }

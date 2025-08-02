@@ -24,7 +24,7 @@ describe('TaskController', () => {
     updatedAt: new Date(),
   };
 
-  const mockTaskService = {
+  const mockTaskService: Record<string, jest.Mock> = {
     createTask: jest.fn(),
     getUserTasks: jest.fn(),
     getTaskById: jest.fn(),
@@ -63,7 +63,7 @@ describe('TaskController', () => {
       const createTaskDto: CreateTaskDto = {
         title: 'New Task',
         description: 'New Description',
-        status: TaskStatus.PENDING,
+        status: TaskStatus.PENDING as TaskStatus,
       };
 
       const expectedResult = {
@@ -76,7 +76,10 @@ describe('TaskController', () => {
 
       const result = await controller.createTask(mockUser, createTaskDto);
 
-      expect(service.createTask).toHaveBeenCalledWith(mockUser.id, createTaskDto);
+      expect(service.createTask).toHaveBeenCalledWith(
+        mockUser.id,
+        createTaskDto,
+      );
       expect(result).toEqual(expectedResult);
     });
 
@@ -94,7 +97,10 @@ describe('TaskController', () => {
 
       const result = await controller.createTask(mockUser, createTaskDto);
 
-      expect(service.createTask).toHaveBeenCalledWith(mockUser.id, createTaskDto);
+      expect(service.createTask).toHaveBeenCalledWith(
+        mockUser.id,
+        createTaskDto,
+      );
       expect(result).toEqual(expectedResult);
     });
   });
@@ -166,7 +172,7 @@ describe('TaskController', () => {
       const taskId = 'task-123';
       const updateTaskDto: UpdateTaskDto = {
         title: 'Updated Task',
-        status: TaskStatus.COMPLETED,
+        status: TaskStatus.COMPLETED as TaskStatus,
       };
 
       const expectedResult = {
@@ -177,9 +183,17 @@ describe('TaskController', () => {
 
       mockTaskService.updateTask.mockResolvedValue(expectedResult);
 
-      const result = await controller.updateTask(mockUser, taskId, updateTaskDto);
+      const result = await controller.updateTask(
+        mockUser,
+        taskId,
+        updateTaskDto,
+      );
 
-      expect(service.updateTask).toHaveBeenCalledWith(mockUser.id, taskId, updateTaskDto);
+      expect(service.updateTask).toHaveBeenCalledWith(
+        mockUser.id,
+        taskId,
+        updateTaskDto,
+      );
       expect(result).toEqual(expectedResult);
     });
 
@@ -196,9 +210,17 @@ describe('TaskController', () => {
 
       mockTaskService.updateTask.mockResolvedValue(expectedResult);
 
-      const result = await controller.updateTask(mockUser, taskId, updateTaskDto);
+      const result = await controller.updateTask(
+        mockUser,
+        taskId,
+        updateTaskDto,
+      );
 
-      expect(service.updateTask).toHaveBeenCalledWith(mockUser.id, taskId, updateTaskDto);
+      expect(service.updateTask).toHaveBeenCalledWith(
+        mockUser.id,
+        taskId,
+        updateTaskDto,
+      );
       expect(result).toEqual(expectedResult);
     });
   });

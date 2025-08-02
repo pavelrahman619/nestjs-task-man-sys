@@ -111,7 +111,9 @@ describe('TaskService', () => {
         title: 'New Task',
       };
 
-      mockPrismaService.task.create.mockRejectedValue(new Error('Database error'));
+      mockPrismaService.task.create.mockRejectedValue(
+        new Error('Database error'),
+      );
 
       const result = await service.createTask(mockUser.id, createTaskDto);
 
@@ -145,7 +147,9 @@ describe('TaskService', () => {
     });
 
     it('should handle get user tasks error', async () => {
-      mockPrismaService.task.findMany.mockRejectedValue(new Error('Database error'));
+      mockPrismaService.task.findMany.mockRejectedValue(
+        new Error('Database error'),
+      );
 
       const result = await service.getUserTasks(mockUser.id);
 
@@ -190,7 +194,9 @@ describe('TaskService', () => {
 
     it('should handle get task by id error', async () => {
       const taskId = 'task-123';
-      mockPrismaService.task.findFirst.mockRejectedValue(new Error('Database error'));
+      mockPrismaService.task.findFirst.mockRejectedValue(
+        new Error('Database error'),
+      );
 
       const result = await service.getTaskById(mockUser.id, taskId);
 
@@ -214,7 +220,11 @@ describe('TaskService', () => {
       mockPrismaService.task.findFirst.mockResolvedValue(mockTask);
       mockPrismaService.task.update.mockResolvedValue(updatedTask);
 
-      const result = await service.updateTask(mockUser.id, taskId, updateTaskDto);
+      const result = await service.updateTask(
+        mockUser.id,
+        taskId,
+        updateTaskDto,
+      );
 
       expect(prismaService.task.findFirst).toHaveBeenCalledWith({
         where: {
@@ -249,7 +259,11 @@ describe('TaskService', () => {
 
       mockPrismaService.task.findFirst.mockResolvedValue(null);
 
-      const result = await service.updateTask(mockUser.id, taskId, updateTaskDto);
+      const result = await service.updateTask(
+        mockUser.id,
+        taskId,
+        updateTaskDto,
+      );
 
       expect(result).toEqual({
         success: false,
@@ -265,9 +279,15 @@ describe('TaskService', () => {
         title: 'Updated Task',
       };
 
-      mockPrismaService.task.findFirst.mockRejectedValue(new Error('Database error'));
+      mockPrismaService.task.findFirst.mockRejectedValue(
+        new Error('Database error'),
+      );
 
-      const result = await service.updateTask(mockUser.id, taskId, updateTaskDto);
+      const result = await service.updateTask(
+        mockUser.id,
+        taskId,
+        updateTaskDto,
+      );
 
       expect(result).toEqual({
         success: false,
@@ -322,7 +342,9 @@ describe('TaskService', () => {
     it('should handle delete task error', async () => {
       const taskId = 'task-123';
 
-      mockPrismaService.task.findFirst.mockRejectedValue(new Error('Database error'));
+      mockPrismaService.task.findFirst.mockRejectedValue(
+        new Error('Database error'),
+      );
 
       const result = await service.deleteTask(mockUser.id, taskId);
 

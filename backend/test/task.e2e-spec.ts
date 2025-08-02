@@ -112,9 +112,7 @@ describe('TaskController (e2e)', () => {
     });
 
     it('should fail to get tasks without authentication', async () => {
-      await request(app.getHttpServer())
-        .get('/tasks')
-        .expect(401);
+      await request(app.getHttpServer()).get('/tasks').expect(401);
     });
   });
 
@@ -131,7 +129,7 @@ describe('TaskController (e2e)', () => {
 
     it('should fail to get non-existent task', async () => {
       const nonExistentId = '00000000-0000-0000-0000-000000000000';
-      
+
       const response = await request(app.getHttpServer())
         .get(`/tasks/${nonExistentId}`)
         .set('Authorization', `Bearer ${userToken}`)
@@ -142,9 +140,7 @@ describe('TaskController (e2e)', () => {
     });
 
     it('should fail to get task without authentication', async () => {
-      await request(app.getHttpServer())
-        .get(`/tasks/${taskId}`)
-        .expect(401);
+      await request(app.getHttpServer()).get(`/tasks/${taskId}`).expect(401);
     });
   });
 
@@ -210,9 +206,7 @@ describe('TaskController (e2e)', () => {
     });
 
     it('should fail to delete task without authentication', async () => {
-      await request(app.getHttpServer())
-        .delete(`/tasks/${taskId}`)
-        .expect(401);
+      await request(app.getHttpServer()).delete(`/tasks/${taskId}`).expect(401);
     });
 
     it('should delete task', async () => {
