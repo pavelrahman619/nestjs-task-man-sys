@@ -1,30 +1,33 @@
 import { useState } from 'react'
-import { useTasks, useCreateTask } from './hooks/use-api.js'
+import { useTasks } from './hooks/use-api.js'
 import { useAuth } from './hooks/useAuth.js'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import AuthModal from './components/AuthModal.jsx'
 import UserProfile from './components/UserProfile.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import TaskCard from './components/TaskCard.jsx'
+import TaskForm from './components/TaskForm.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [showAuthModal, setShowAuthModal] = useState(false)
+  const [showTaskForm, setShowTaskForm] = useState(false)
   
   // Auth state
   const { isAuthenticated, isLoading } = useAuth()
   
   // Example of using TanStack Query hooks
   const { data: tasks, isLoading: tasksLoading, error } = useTasks();
-  const createTaskMutation = useCreateTask();
 
   const handleCreateTask = () => {
-    createTaskMutation.mutate({
-      title: 'Sample Task',
-      description: 'This is a sample task created from React',
-      status: 'PENDING',
-    });
+    setShowTaskForm(true);
+  };
+
+  const handleTaskFormClose = () => {
+    setShowTaskForm(false);
+  };
+
+  const handleTaskFormSuccess = () => {
+    setShowTaskForm(false);
   };
 
   const handleAuthSuccess = () => {
@@ -66,22 +69,48 @@ function App() {
           </div>
         }
       >
-        <div className="card">
-          <h2>Your Tasks</h2>
-          {tasksLoading && <p>Loading tasks...</p>}
-          {error && <p>Error loading tasks: {error.message}</p>}
-          {tasks && (
+        <div className="tasks-container">
+          <div className="tasks-header">
             <div>
-              <p>Loaded {tasks.length || 0} tasks</p>
-              <button 
-                onClick={handleCreateTask}
-                disabled={createTaskMutation.isPending}
-              >
-                {createTaskMutation.isPending ? 'Creating...' : 'Create Sample Task'}
-              </button>
-              {createTaskMutation.isError && (
-                <p>Error creating task: {createTaskMutation.error.message}</p>
+              <h2>Your Tasks</h2>
+              {tasks && (
+                <p className="tasks-count">
+                  {tasks.length} task{tasks.length !== 1 ? 's' : ''} total
+                </p>
               )}
+            </div>
+            <button 
+              className="create-task-btn"
+              onClick={handleCreateTask}
+            >
+              + Add Task
+            </button>
+          </div>
+
+          {tasksLoading && (
+            <div className="tasks-loading">
+              <p>Loading your tasks...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="tasks-error">
+              <p>Error loading tasks: {error.message}</p>
+            </div>
+          )}
+
+          {tasks && tasks.length === 0 && !tasksLoading && (
+            <div className="no-tasks">
+              <p>No tasks yet!</p>
+              <p>Click "Add Task" to create your first task.</p>
+            </div>
+          )}
+
+          {tasks && tasks.length > 0 && (
+            <div className="tasks-grid">
+              {tasks.map((task) => (
+                <TaskCard key={task.id} task={task} />
+              ))}
             </div>
           )}
         </div>
@@ -93,6 +122,14 @@ function App() {
         onClose={() => setShowAuthModal(false)}
         onAuthSuccess={handleAuthSuccess}
       />
+
+      {/* Task Form Modal */}
+      {showTaskForm && (
+        <TaskForm
+          onClose={handleTaskFormClose}
+          onSuccess={handleTaskFormSuccess}
+        />
+      )}
     </>
   )
 }
