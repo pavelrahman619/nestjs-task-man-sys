@@ -1,55 +1,87 @@
-# nestjs-task-man-sys
+# Task Management System
 
-## Backend Setup & Useful Commands
+A full-stack task management application built with NestJS (backend) and React (frontend).
 
-### 1. Install dependencies
+## Features
+
+- **Authentication**: JWT-based login/registration with secure token management
+- **Task Management**: Create, read, update, and delete tasks with status tracking
+- **User-Specific Data**: Each user can only access their own tasks
+- **Real-time Updates**: Optimistic UI updates with TanStack Query
+- **Responsive Design**: Modern React components with CSS styling
+
+## Tech Stack
+
+**Backend (NestJS)**
+- NestJS with TypeScript
+- Prisma ORM with PostgreSQL
+- JWT Authentication with Passport
+- RESTful API design
+- Docker for development database
+
+**Frontend (React)**
+- React 19 with Vite
+- TanStack Query for state management
+- Context API for authentication
+- Modern hooks and components
+- CSS modules for styling
+
+## Quick Start
+
+### Backend Setup
+
+### 1. Install Dependencies
+
 ```sh
 cd backend
 yarn install
 # or
 npm install
+```
 
+### 2. Setup Database
+
+```sh
 # Initialize Prisma (if not already done)
 npx prisma init --datasource-provider postgresql --output ../generated/prisma
-
-# Edit your .env or set DATABASE_URL in prisma/schema.prisma
 
 # Generate Prisma Client
 npx prisma generate
 
 # Run migrations (after editing schema.prisma)
 npx prisma migrate dev --name init
+```
 
-3. Environment Variables
-Create a .env file in the root or backend directory with:
+### 3. Environment Variables
 
+Create a `.env` file in the backend directory:
+
+```env
 DATABASE_URL="postgresql://postgres:123@localhost:5434/nest"
+```
 
-4. Start the Backend Server
+### 4. Start the Backend Server
+
+```sh
 yarn start:dev
 # or
 npm run start:dev
+```
 
+### Frontend Setup
 
-5. Start Prisma
-yarn prisma studio
+```sh
+cd frontend
+yarn install
+yarn dev
+```
 
+## Screenshots
 
-Reference:
-https://www.youtube.com/watch?v=GHTA143_b-s
+<img src="./images/Screenshot%202025-08-02%20171334.png" width="100%" alt="Task Management System Screenshot 1" >
 
-App Screenshots:
+<img src="./images/Screenshot%202025-08-02%20171303.png" width="100%" alt="Task Management System Screenshot 2" >
 
-<img width="1913" height="922" alt="image" src="https://github.com/user-attachments/assets/de3353e3-8ada-4217-a8e9-a37ae7c6f847" />
+<img src="./images/Screenshot%202025-08-02%20171223.png" width="100%" alt="Task Management System Screenshot 3" >
 
-<img width="1915" height="928" alt="image" src="https://github.com/user-attachments/assets/9c688a20-ad7f-47db-9671-2f3a18e638f5" />
-
-<img width="1914" height="925" alt="image" src="https://github.com/user-attachments/assets/d8e0211e-c791-4383-8b2e-5ce4d3f1aeed" />
-
-<img width="1915" height="924" alt="image" src="https://github.com/user-attachments/assets/a3a99741-2af5-4916-a33b-e1a0aae22318" />
-
-// add these images
-![Screenshot 2025-08-02 171334](./images/Screenshot%202025-08-02%20171334.png)
-![Screenshot 2025-08-02 171303](./images/Screenshot%202025-08-02%20171303.png)
-![Screenshot 2025-08-02 171223](./images/Screenshot%202025-08-02%20171223.png)
-![Screenshot 2025-08-02 171352](./images/Screenshot%202025-08-02%20171352.png)
+<img src="./images/Screenshot%202025-08-02%20171352.png" width="100%" alt="Task Management System Screenshot 4" >
