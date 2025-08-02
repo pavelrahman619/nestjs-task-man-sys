@@ -47,3 +47,9 @@ App Screenshots:
 <img width="1914" height="925" alt="image" src="https://github.com/user-attachments/assets/d8e0211e-c791-4383-8b2e-5ce4d3f1aeed" />
 
 <img width="1915" height="924" alt="image" src="https://github.com/user-attachments/assets/a3a99741-2af5-4916-a33b-e1a0aae22318" />
+
+// add these images
+![Screenshot 2025-08-02 171334](./images/Screenshot%202025-08-02%20171334.png)
+![Screenshot 2025-08-02 171303](./images/Screenshot%202025-08-02%20171303.png)
+![Screenshot 2025-08-02 171223](./images/Screenshot%202025-08-02%20171223.png)
+![Screenshot 2025-08-02 171352](./images/Screenshot%202025-08-02%20171352.png)
