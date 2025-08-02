@@ -37,3 +37,13 @@ yarn prisma studio
 
 Reference:
 https://www.youtube.com/watch?v=GHTA143_b-s
+
+App Screenshots:
+
+<img width="1913" height="922" alt="image" src="https://github.com/user-attachments/assets/de3353e3-8ada-4217-a8e9-a37ae7c6f847" />
+
+<img width="1915" height="928" alt="image" src="https://github.com/user-attachments/assets/9c688a20-ad7f-47db-9671-2f3a18e638f5" />
+
+<img width="1914" height="925" alt="image" src="https://github.com/user-attachments/assets/d8e0211e-c791-4383-8b2e-5ce4d3f1aeed" />
+
+<img width="1915" height="924" alt="image" src="https://github.com/user-attachments/assets/a3a99741-2af5-4916-a33b-e1a0aae22318" />
