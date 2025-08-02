@@ -33,3 +33,7 @@ npm run start:dev
 
 5. Start Prisma
 yarn prisma studio
+
+
+Reference:
+https://www.youtube.com/watch?v=GHTA143_b-s
