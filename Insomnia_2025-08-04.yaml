@@ -1,0 +1,163 @@
+type: collection.insomnia.rest/5.0
+name: My first collection
+meta:
+  id: wrk_ca8b7d503bf74cf4b3bfe19b0e55c667
+  created: 1754051705655
+  modified: 1754051705655
+  description: ""
+collection:
+  - url: http://localhost:3333/users/me
+    name: user me
+    meta:
+      id: req_e51cc7f2faed4d40aa71d8bf029643de
+      created: 1754051705755
+      modified: 1754051722764
+      isPrivate: false
+      description: ""
+      sortKey: -1754051705755
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3333/auth/signup
+    name: sign up
+    meta:
+      id: req_1c220b9b45cb49b9a16afa74cf72566b
+      created: 1754051732171
+      modified: 1754313702240
+      isPrivate: false
+      description: ""
+      sortKey: -1754051732171
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_0bfb066414a244eb91dfd3df24a3f055
+          name: name
+          value: pavel
+          description: ""
+          disabled: false
+        - id: pair_4360d347189d48249d61cba43e4f20c9
+          name: email
+          value: pavelx16@gmail.com
+          description: ""
+          disabled: false
+        - id: pair_8555ec6116d1477da629b34c17fb5194
+          name: password
+          value: "12345678"
+          description: ""
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3333/auth/signin
+    name: sign in
+    meta:
+      id: req_bd17c00001c343769c2504f8fc0748bb
+      created: 1754051991582
+      modified: 1754052008460
+      isPrivate: false
+      description: ""
+      sortKey: -1754051718963
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_0bfb066414a244eb91dfd3df24a3f055
+          name: name
+          value: pavel
+          description: ""
+          disabled: false
+        - id: pair_4360d347189d48249d61cba43e4f20c9
+          name: email
+          value: pavelx16@gmail.com
+          description: ""
+          disabled: false
+        - id: pair_8555ec6116d1477da629b34c17fb5194
+          name: password
+          value: "12345678"
+          description: ""
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3333/tasks
+    name: create task
+    meta:
+      id: req_d49239bfa678473b92f3411c9589614b
+      created: 1754119919846
+      modified: 1754120050864
+      isPrivate: false
+      description: ""
+      sortKey: -1754119919846
+    method: GET
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "title": "Complete project",
+          "description": "Finish the NestJS task management system",
+          "status": "PENDING"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_ad1fd4b9c6c44cda8cc800384e6072ca
+      - name: User-Agent
+        value: insomnia/11.3.0
+        id: pair_cd8c16b6ab384a4fb19597c4a10e8373
+      - id: pair_0a4932b6b51041f78db31c1005018144
+        name: Authorization
+        value: BEARER
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZTkzMzNhNC04MDMxLTQxYjgtYWM5OC1lODFkNTQzNzgwY2EiLCJlbWFpbCI6InBhdmVseDE2QGdtYWlsLmNvbSIsImlhdCI6MTc1NDExOTk2MSwiZXhwIjoxNzU0MTIwMjYxfQ.a4Sh3e1peblHf5bI46RefFpcG3W97VUzJttp0cxP7Zk
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_d0c849df895f8f58430a53a3f66299a3f7b4030f
+    created: 1754051705671
+    modified: 1754051705671
+environments:
+  name: Base Environment
+  meta:
+    id: env_d0c849df895f8f58430a53a3f66299a3f7b4030f
+    created: 1754051705661
+    modified: 1754051705661
+    isPrivate: false
